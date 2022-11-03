@@ -26,8 +26,8 @@ public class OrderController {
                 .filter(order -> order.getId().equals(id))
                 .findFirst()
                 .map(order -> {
-                    Customer customer = restTemplate.getForObject("http://localhost:8082/api/customer/" + order.getCustomerId(), Customer.class);
-                    Product product = restTemplate.getForObject("http://localhost:8081/api/product/" + order.getProductId(), Product.class);
+                    Customer customer = restTemplate.getForObject("http://customer-service:8082/api/customer/" + order.getCustomerId(), Customer.class);
+                    Product product = restTemplate.getForObject("http://product-service:8081/api/product/" + order.getProductId(), Product.class);
                     return OrderDto.builder()
                             .id(order.getId())
                             .customerName(customer.getName())
